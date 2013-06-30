@@ -242,7 +242,7 @@ $(function(){
 	$('.bad_horoscope_value').html(pickRandom(horoscope.sort(), 1).join('，'));
 	pickTodaysLuck();
 
-    var shareContent =  todayStr + " " + lunarDate + " " + weekStr + " 宜：" + goodArr.join('，') + "；不宜：" + badArr.join('，')+"。更多详情，请查看屌丝日历";
+    var shareContent =  todayStr + " " + lunarDate + " " + weekStr + " 宜：" + goodArr.join('，') + "；不宜：" + badArr.join('，')+"。更多详情，请查看#屌丝日历#";
     //生成新浪微博分享内容
 	$('#weiboShareBtn').attr('title', shareContent);
     //生成QQ空间分享内容
