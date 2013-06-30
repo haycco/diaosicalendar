@@ -70,7 +70,7 @@ var activities = [
 	{name:"文件重命名\"%v\"", good:"",bad:""},
 	{name:"打台球", good:"你的状态很好",bad:"没什么状态咯，只有被虐的份", weekend: true},
 	{name:"看电影", good:"重拾对生活的信心",bad:"你会心神不宁", weekend: true},
-	{name:"访问好友QQ空间", good:"",bad:""},
+	{name:"访问好友QQ空间", good:"",bad:""}
 ];
 
 var specials = [
