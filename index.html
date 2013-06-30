@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:wb="http://open.weibo.com/wb">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta description="信则有，不信则无，总之作者不会对该程序生成的内容负任何责任。">
+		<meta description="本程序参考程序员老黄历而来。">
+		<meta author="weibo: @会煮豆浆的油条, twitter: @haycco, G+: Licorice Liu">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<title>屌丝日历</title>
+		<link rel="stylesheet" href="style.css" type="text/css">
+		<script id="jquery_183" type="text/javascript" class="library" src="js/jquery-1.10.1.min.js"></script>
+		<script type="text/javascript" class="library" src="js/lunar.calendar.js"></script>
+		<script type="text/javascript" class="library" src="js/main.js"></script>	 
+		<script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=" type="text/javascript" charset="utf-8"></script>
+        <script src="http://qzonestyle.gtimg.cn/qzone/app/qzlike/qzopensl.js#jsdate=20111201" charset="utf-8"></script>
+		<script src="http://connect.qq.com/widget/loader/loader.js" widget="shareqq" charset="utf-8"></script>
+	</head>
+	<body>
+		<div class="container">
+			<div class="title">
+				屌丝日历<sup>Beta</sup>
+			</div>
+			<div class="calendar">
+			  <span class="date"></span>
+			  <span class="week"></span>
+			  <span class="lunar"></span>
+			</div>
+			<div class="good">
+				<div class="title">
+					<table>
+						<tr><td>宜</td></tr>
+					</table>
+				</div>
+				<div class="content">
+					<ul></ul>
+				</div>
+				<div class="clear"></div>
+			</div>
+			<div class="split"></div>
+			<div class="bad">
+				<div class="title">
+					<table>
+						<tr><td>不宜</td></tr>
+					</table>
+				</div>
+				<div class="content">
+					<ul></ul>
+				</div>
+				<div class="clear"></div>
+			</div>
+			<div class="split"></div>
+			<div class="line-tip">
+				<strong>座位朝向：</strong>面向<span class="direction_value"></span>工作/上网，心情好。
+			</div>
+			<div class="line-tip">
+				<strong>今日宜饮：</strong><span class="drink_value"></span>
+			</div>
+			<div class="line-tip">
+				<strong>女神亲近指数：</strong><span class="goddes_value"></span>
+			</div>
+			<div class="line-tip">
+				<strong>今日幸运星座：</strong><span class="luck_horoscope_value"></span>
+			</div>
+			<div class="line-tip">
+				<strong>今日倒霉星座：</strong><span class="bad_horoscope_value"></span>
+			</div>
+      <div class="adlink">
+			  <a>提高人品值的分享：<span><wb:share-button id="weiboShareBtn" count="n" size="middle" appkey="5xxm4k2z2z" pic="http://diaosicalendar.sinaapp.com/shareimage.png"></wb:share-button></span>
+        <span id="qqShareBtn"></span>
+		<span id="qzoneShareBtn"></span>
+        </a>
+			</div>
+      
+
+			<!--
+			<div class="adlink">
+				<a href="http://sandbox.runjs.cn/show/yu9cs4i4" target="dev_qiu_qian">想求签？</a>
+			</div>
+			-->
+			<div class="comment">
+				<ul>
+					<li>本日历内容是程序生成的，信则有，不信则无，总之作者不会对该程序生成的内容负任何责任。</li>
+					<li>本应用参考程序员老黄历，如有问题可以在微博@会煮豆浆的油条。<span><wb:follow-button uid="1975143221" type="gray_1" width="67" height="24" ></wb:follow-button></span></li>
+				</ul>
+			</div>
+		</div>
+	</body>
+</html>
