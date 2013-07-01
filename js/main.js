@@ -8,8 +8,13 @@
  */
 var goodArr = [];
 var badArr=[];
+var keycode = 1;  //附加随机码
+var shareContent = "";//分享内容
 
 function random(dayseed, indexseed) {
+	if(keycode!=1) {
+        dayseed += keycode;
+	}
 	var n = dayseed % 11117;
 	for (var i = 0; i < 100 + indexseed; i++) {
 		n = n * n;
@@ -70,7 +75,8 @@ var activities = [
 	{name:"文件重命名\"%v\"", good:"",bad:""},
 	{name:"打台球", good:"你的状态很好",bad:"没什么状态咯，只有被虐的份", weekend: true},
 	{name:"看电影", good:"重拾对生活的信心",bad:"你会心神不宁", weekend: true},
-	{name:"访问好友QQ空间", good:"",bad:""}
+	{name:"访问好友QQ空间", good:"",bad:""},
+	{name:"淘宝", good:"快去看看你要的团购和秒杀吧",bad:"你该剁手了"}
 ];
 
 var specials = [
@@ -151,6 +157,8 @@ function isWeekend() {
 
 // 添加预定义事件
 function pickSpecials() {
+	$('.good .content ul').html('');
+	$('.bad .content ul').html('');
 	var specialSize = [0,0];
 	
 	for (var i = 0; i < specials.length; i++) {
@@ -228,8 +236,9 @@ function addToBad(event) {
 	badArr.push(event.name + (event.bad!=""?('(' + event.bad + ')'):event.bad));
 }
 
-$(function(){
-	var todayStr = getTodayString();
+function refreshData(keyword) {
+
+    var todayStr = getTodayString();
 	var weekStr = "星期" + weeks[today.getDay()];
 	var lunarDate = getLunarCalendar().lunarDate;
 	$('.date').html(todayStr);
@@ -242,10 +251,11 @@ $(function(){
 	$('.bad_horoscope_value').html(pickRandom(horoscope.sort(), 1).join('，'));
 	pickTodaysLuck();
 
-    var shareContent =  todayStr + " " + lunarDate + " " + weekStr + " 宜：" + goodArr.join('，') + "；不宜：" + badArr.join('，')+"。更多详情，请查看屌丝日历";
+    shareContent =  todayStr + " " + lunarDate + " " + weekStr + (keyword==""?"":" @" + keyword) + " 宜：" + goodArr.join('，') + "；不宜：" + badArr.join('，')+"。更多详情，请查看屌丝日历";
     //生成新浪微博分享内容
 	$('#weiboShareBtn').attr('title', shareContent);
-    //生成QQ空间分享内容
+    
+	//生成QQ空间分享内容
 	(function(){
         var p = {
         url:location.href,
@@ -254,7 +264,7 @@ $(function(){
         summary:shareContent,/*分享摘要(可选)*/
         title:'屌丝日历',/*分享标题(可选)*/
         site:'屌丝日历',/*分享来源 如：腾讯网(可选)*/
-        pics:'http://diaosicalendar.sinaapp.com/shareimage.png', /*分享图片的路径(可选)*/
+        pics:'http://diaosicalendar.sinaapp.com/images/share_image.png', /*分享图片的路径(可选)*/
         style:'202',
         width:31,
         height:31
@@ -272,7 +282,7 @@ $(function(){
       desc:shareContent, /*分享理由(风格应模拟用户对话),支持多分享语随机展现（使用|分隔）*/
       title:'屌丝日历', /*分享标题(可选)*/
       summary:shareContent, /*分享摘要(可选)*/
-      pics:'http://diaosicalendar.sinaapp.com/shareimage.png', /*分享图片(可选)*/
+      pics:'http://diaosicalendar.sinaapp.com/images/share_image.png', /*分享图片(可选)*/
       flash: '', /*视频地址(可选)*/
       site:'屌丝日历', /*分享来源(可选) 如：QQ分享*/
       style:'202',
@@ -285,4 +295,23 @@ $(function(){
       }
        $('#qqShareBtn').append(['<a class="qcShareQQDiv" href="http://connect.qq.com/widget/shareqq/index.html?',s.join('&'),'" target="_blank">分享到QQ</a>'].join(''));
     })();
+}
+
+$(function(){
+    var url = location.href;
+	var URLParams = [];
+	var paraString = url.substring(url.indexOf("?") + 1, url.length).split("&");
+	for (i=0; i < paraString.length ; i++){
+	   var aParam = paraString[i].split('=');
+	   URLParams[aParam[0]] = aParam[1];
+	}
+	var keyword = $.trim(URLParams['keyword']);
+	keyword = keyword?decodeURIComponent(keyword):"";
+	$('#keyword').val(keyword);
+	if(keyword!="") {
+		keycode = Math.abs(keyword.charCodeAt(0).toString(16).toLowerCase().replace(/[a-z]/gi,""));
+	}
+	
+	refreshData(keyword);
+
 });
